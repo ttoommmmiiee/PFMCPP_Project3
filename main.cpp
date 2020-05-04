@@ -1,5 +1,5 @@
 /*
-Project 3 - Part 1a / 5
+Project 3 - Part 1b / 5
 Video:  Chapter 2 Part 5
 User-Defined Types
 
@@ -20,68 +20,82 @@ You are going to write 10 UDTs in project3.
     Part 1e: you will convert those 10 plain-english UDTs into code that runs.
 ************************
 
-1) Look at the picture of the car interior (Part1a pic.jpg).  
-    Fill in the blanks below which break this car interior down into sub-objects.
-
-    Several sub-objects are listed below that make up this car's interior.
-        you're going to name several things that you'll find on each subobject
-        you're going to name several things that each subobject can do.
-        If you've seen "Family Feud", we are going to do what they do in that show
-
-        A few blanks are filled in for you already.
-
-Main Object: Car Interior
-Sub Object 1: Steering Wheel
-    Name 4 things you'll find on the:    Steering Wheel
-        1) paddle shifters
-        2) 'cruise control' controls
-        3) horn
-        4) airbag
-    Name 2 things you can do with the:   Steering Wheel
-        1) adjust cruise control settings.
-        2) honk horn
-        
-Sub Object 2: Instrument Cluster
-    Name 4 things you'll find on the:   Instrument Cluster
-        1)  fuel guage 
-        2)  spedometer 
-        3)  external temperature guage
-        4)  seatbelt indicator 
-
-    Name 3 things you can do with the:   Instrument Cluster
-        1) check speed 
-        2) check external temperature 
-        3) check fuel level
-    
-Sub Object 3: Environment Controls
-    Name 3 things you'll find on the:    Environment Controls
-        1)  AC control
-        2)  seat heat control
-        3)  air circulation control
-    Name 3 things you can do with the:   Environment Controls
-        1)  turn on AC
-        2)  adjust seat temperature
-        3)  get fresh air into the car
-
-Sub Object 4: Infotainment System
-    Name 3 things you'll find on the:    Infotainment System
-        1)  Maps
-        2)  Music
-        3)  Telephone link
-    Name 3 things you can do with the:   Infotainment System
-        1)  Plan route to destination
-        2)  Play music
-        3)  Call friend 
-
-Sub Object 5: Seat 
-    Name 3 things you'll find on the:    Seat
-        1)  Seatbelt
-        2)  Seat recliner
-        3)  Loose change
-    Name 2 things you can do with the:   Seat
-        1)  put on seatbelt
-        2)  find loose change
+1)  Fill in #1 - 4 with a random UDT in plain english
+    These 4 UDTs do not need to be related.
+        a) For each plain-english UDT, write out 5 traits or properties and 3 things it can do
 */
+
+/*
+ example:  
+ 
+Thing: Car Wash   
+    5 properties:
+        - number of vacuum cleaners
+        - number of eco-friendly cleaning supplies
+        - stores the amount of water used per week.
+        - stores amount of profit made per week
+        - number of cars serviced per day
+    3 things it can do:
+        - wash and wax car
+        - charge customer
+        - detail the car interior
+ */
+
+/*
+Thing 1)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 2)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 3)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 4)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 

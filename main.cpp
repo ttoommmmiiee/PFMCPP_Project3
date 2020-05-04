@@ -104,17 +104,17 @@ Thing 4) Vinyl record
  */
 
 /*
-Thing 10)
+Thing 10) Synth
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1)  Oscillator
+    2)  LFO
+    3)  Envelope
+    4)  Mixer
+    5)  Noise Generator
 3 things it can do:
-    1)
-    2)
-    3)
+    1)  Make bass tone
+    2)  Make snare drum sound
+    3)  Send midi
  */
 
 /*

@@ -42,59 +42,59 @@ Thing: Car Wash
  */
 
 /*
-Thing 1)
+Thing 1) Electric Piano
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1)  number of keys
+    2)  volume knob
+    3)  grand piano sound
+    4)  organ sound
+    5)  foot pedal
 3 things it can do:
-    1)
-    2)
-    3)
+    1)  adjust volume 
+    2)  change sound
+    3)  make sound
  */
 
 /*
-Thing 2)
+Thing 2) microwave oven
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1)  has door
+    2)  has timer
+    3)  power settings
+    4)  presets for different dishes
+    5)  has scale to measure weight
 3 things it can do:
-    1)
-    2)
-    3)
+    1)  cook potato
+    2)  auto cook by weight
+    3)  change power setting
  */
 
 /*
-Thing 3)
+Thing 3) Airport 
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1)  number of planes
+    2)  number of passengers
+    3)  number of cafes
+    4)  stores number of coffee sales per day
+    5)  length of queue at security
 3 things it can do:
-    1)
-    2)
-    3)
+    1)  board passengers on planes
+    2)  restock coffee supplies
+    3)  stop passengers entering airport
  */
 
 /*
-Thing 4)
+Thing 4) Vinyl record
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Length of music on side A
+    2) Has music on both sides
+    3) Signal to noise ratio
+    4) Can play without skipping
+    5) Number of good tracks on record
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Play through to end
+    2) Bring joy to the listener
+    3) Accrue resale value on Discogs
  */
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH

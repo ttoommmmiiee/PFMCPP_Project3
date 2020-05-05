@@ -1,5 +1,5 @@
 /*
-Project 3 - Part 1c / 5
+Project 3 - Part 1d / 5
 Video:  Chapter 2 Part 5
 User-Defined Types
 
@@ -20,31 +20,48 @@ You are going to write 10 UDTs in project3.
     Part 1e: you will convert those 10 plain-english UDTs into code that runs.
 ************************
 
-1) write the 10th UDT
-    come up with an object that is made of 5 smaller parts.
-    
-    Here is an example:
-    Cell Phone
+    The goal of this step is to get you to think about breaking down an object into smaller and smaller objects, 
+    until the smallest object is made of up only C++ primitives. 
 
-    A Cell Phone is made up of the following 5 properties:
+    Continuing the previous example:  Cell Phone
+
+    A Cell Phone is made up of the following 5 properties/sub-objects and 3 actions:
         Display
         Memory
         CPU
         Radio
         Applications
-
-    A Cell Phone has 3 things it can do:
+    3 actions:
         make a call
         send a text
         run an application.
 
-    Notice that I did not use "has a display" or "Has memory" or "has a cpu" as one of the properties of the CellPhone
+    These 5 properties can be broken down into their own sub-objects and properties. 
+
+    If we break down the first property 'Display' into its 5 properties we get:
+        brightness
+        amount of power consumed.
+        pixels
+        width in cm
+        height in cm
+
+    the Display's brightness can be represented with a Primitive, such as a double. 
+
+    The amount of power consumed can also be represented with a Primitive, such as a float or integer (i.e. 250mWa)
     
-    Writing 'has a ___" checks whether or not your object **has the ability to do something**.
-    Instead, I wrote "Display" or "CPU".  These are specific objects or amounts. 
-    
-    In C++ terms, this means to I want you to avoid using 'bool' (has a) as a member variable type.
-    Instead, prefer the other primitive types.
+    The 'pixels' property must be represented with an array of Pixel instances, as the screen has more than 1 row of pixels.
+        Arrays have not been discussed and can't be used in this project.
+        Instead, we can use an Integer primitive to store the Number of Pixels:
+
+    Display:
+        Number of Pixels
+        Amount of Power consumed (milliwatt-hours)
+        Brightness
+        width in cm
+        height in cm
+************************
+
+1) Fill in #5 - #9 with plain-english UDTs for the 5 properties you created for UDT #10
 */
 
 /*
@@ -102,6 +119,77 @@ Thing 4) Vinyl record
     2) Bring joy to the listener
     3) Accrue resale value on Discogs
  */
+
+/*
+Thing 5)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 6)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 7)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 8)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 9)
+5 properties:
+    1)
+    2)
+    3)
+    4)
+    5)
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
 
 /*
 Thing 10) Synth

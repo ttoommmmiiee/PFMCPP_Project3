@@ -121,73 +121,73 @@ Thing 4) Vinyl record
  */
 
 /*
-Thing 5)
+Thing 5) Oscillator
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Saw Wave level
+    2) Square Wave level
+    3) Tuning control
+    4) Sub Oscillator on/off 
+    5) Octave selector
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Change octave
+    2) Add sub oscillator
+    3) Detune
  */
 
 /*
-Thing 6)
+Thing 6) LFO
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Cycle frequency (Hz)
+    2) Waveform select (square or triangle)
+    3) Attenuate amount
+    4) Speed range select (slow or fast)
+    5) Routing control
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Modulate filter cutoff
+    2) Modulate pitch
+    3) Modulate the Sample and Hold rate
  */
 
 /*
-Thing 7)
+Thing 7) Envelope
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1)  Attack time (milliseconds)
+    2)  Decay time (milliseconds)
+    3)  Sustain level 
+    4)  Release time (milliseconds)
+    5)  Routing control
 3 things it can do:
-    1)
-    2)
-    3)
+    1)  Control mixer level
+    2)  Control filter cuttoff level
+    3)  Route control to different destinations
  */
 
 /*
-Thing 8)
+Thing 8) Mixer and midi interface
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1)  Gain of synth signal
+    2)  Gain of external audio in signal
+    3)  Feedback signal level
+    4)  Midi channel
+    5)  Midi clock sync (external or internal)
 3 things it can do:
-    1)
-    2)
-    3)
+    1)  Receive midi messages
+    2)  Send midi messages
+    3)  Route output to before the filter stage (feedback)
  */
 
 /*
-Thing 9)
+Thing 9) Noise Generator
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1)  Noise colour selector (pink or white)
+    2)  Noise level
+    3)  Sample and hold rate
+    4)  Sample and hold signal
+    5)  Sample and hold routing
 3 things it can do:
-    1)
-    2)
-    3)
+    1)  Sample and Hold signal control pitch 
+    2)  Sample and Hold signal control cuttoff frequency 
+    3)  Sample and Hold signal control LFO rate
  */
 
 

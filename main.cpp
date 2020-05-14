@@ -128,6 +128,35 @@ Thing 1) Electric Piano
     3)  make sound
  */
 
+struct volume
+{
+    //number of keys
+    int numKeys = 127;
+    //volume knob
+    double volumeLevel = 50.0;
+    //grand piano sound
+    std::string pianoSound = "Grand Paino"; //choice of a few different piano samples
+    //organ sound
+    std::string organSound = "Hammond Organ"; //choice of a few different organ samples
+    //foot pedal
+    bool footPedalPressed = false; 
+
+    struct Knob
+    {
+        int width = 100;
+        int height = 100;
+        float rotationAmount = 270.0f;
+        double knobValue = 0.0;
+    };
+
+    //adjust volume 
+    float pianoVolume(double volumeLevel, Knob volumeKnob);
+    //change sound
+    std::string chooseSound(bool pianoOn, bool organOn);
+    //make sound
+    double audio(int notePressed, double volume, bool footPedalPressed);
+};
+
 /*
 Thing 2) microwave oven
 5 properties:
@@ -141,6 +170,36 @@ Thing 2) microwave oven
     2)  auto cook by weight
     3)  change power setting
  */
+
+struct Microwave
+{
+    //has door
+    bool doorIsOpen = true;
+    //has timer
+    int secondsRemaining = 0;
+    //power settings
+    int power = 700;
+    //presets for different dishes
+    int presetDishInput = 0;
+    //has scale to measure weight  
+    double weightInGrams;
+
+    struct Preset
+    {
+        float weightInGrams = 500.0f; 
+        int seconds = 1200;  
+        int power = 900; 
+        std::string presetName = "Potato";
+    };
+
+    //cook potato
+    void cookPotato( Preset potato );
+    //auto cook by weight
+    void cookByWeight(double weightInGrams, int seconds, bool doorIsOpen, int power);
+    //change power setting
+    int powerSetting(int power);
+    
+};
 
 /*
 Thing 3) Airport 
@@ -156,6 +215,27 @@ Thing 3) Airport
     3)  stop passengers entering airport
  */
 
+struct airport
+{
+    //number of planes
+    int numPlanes = 50;
+    //number of passengers
+    int numPassengers = 1000;
+    //number of cafes
+    int numCafes = 10;
+    //stores number of coffee sales per day
+    int numCoffeeSales = 500;
+    //length of queue at security
+    int averageMinutesInQueue = 120;
+
+    //board passengers on planes
+    void boardPassengers(bool planeIsReady, int numPassengers);
+    //restock coffee supplies
+    int restockCoffee(bool coffeeHasRunOut);
+    //stop passengers entering airport
+    bool passengersCanEnter(int numPassengers, int averageMinutesInQueue);
+};
+
 /*
 Thing 4) Vinyl record
 5 properties:
@@ -169,6 +249,27 @@ Thing 4) Vinyl record
     2) Bring joy to the listener
     3) Accrue resale value on Discogs
  */
+
+struct vinyl
+{
+    //Length of music on side A
+    int lenMusicSeconds = 400;
+    //Has music on both sides
+    bool musicBothSides = true;
+    //Signal to noise ratio
+    double noise = 0.0;
+    //Can play without skipping
+    bool vinylCanPlay = false;
+    //Number of good tracks on record
+    int numberOfGoodTracks = 1;
+
+    //Replay from begining
+    void replay(bool hasPlayedToEnd, bool is12Inch);
+    //Bring joy to the listener
+    double bringJoy(int numberOfGoodTracks, double listenerMood);
+    //Accrue resale value on Discogs
+    double accrueValue(int numberOfGoodTracks, int playsOnYoutube);
+};
 
 /*
 Thing 5) Oscillator
@@ -184,6 +285,27 @@ Thing 5) Oscillator
     3) Detune
  */
 
+struct oscillator
+{
+    //Saw Wave level
+    double sawLevel = 0.0;
+    //Square Wave level
+    double squLevel = 1.0;
+    //Tuning control 
+    double tuning = 0.0;
+    //Sub Oscillator on/off 
+    bool subOscOn = false;
+    //Octave selector
+    int octave = 0; 
+
+    //FM Oscillator 2
+    double osc1FM(double osc1SawSignal, double osc1SquSignal);
+    //Add sub oscillator
+    double subOscSignal(bool subOscOn);
+    //Turn on number of LEDs to indicate octave
+    int octaveLED(int octave);
+};
+
 /*
 Thing 6) LFO
 5 properties:
@@ -197,6 +319,27 @@ Thing 6) LFO
     2) Modulate pitch
     3) Modulate the Sample and Hold rate
  */
+
+struct LFO
+{
+    //Cycle frequency (Hz)
+    double freqLFO = 30;
+    //Waveform select (square or triangle)
+    bool squLFO = false;
+    //Attenuate amount
+    float attenuate = 1.0f; 
+    //Speed range select (slow or fast)
+    bool speedSlow = true;
+    //Routing control
+    int routingLFO = 0;
+
+    //Modulate filter cutoff
+    double modCutoff(int routingLFO, double LFOSignal);
+    //Modulate pitch
+    double modPitch(int routingLFO, double LFOSignal);
+    //Modulate the Sample and Hold rate
+    double modSAH(int routingLFO, double LFOSignal);
+};
 
 /*
 Thing 7) Envelope
@@ -212,6 +355,27 @@ Thing 7) Envelope
     3)  Route control to different destinations
  */
 
+struct envelope
+{
+    //Attack time (milliseconds)
+    int attack = 5;
+    //Decay time (milliseconds)
+    int decay = 100;
+    //Sustain level 
+    double sustain = 0.5;
+    //Release time (milliseconds)
+    int release = 500;
+    //Routing control
+    int routingEnvelope = 0;
+
+    //Control osc level
+    double oscGainEnvelope(double envelopeSignal, int routingEnvelope = 0 );
+    //Control filter cuttoff level
+    double cutoffEnvelope(double envelopeSignal, int routingEnvelope = 1 );
+    //Route control to different destinations
+    int routingControl(double envelopeSignal, int routingEnvelope = 2 );
+};
+
 /*
 Thing 8) Mixer and midi interface
 5 properties:
@@ -225,6 +389,27 @@ Thing 8) Mixer and midi interface
     2)  Send midi messages
     3)  Route output to before the filter stage (feedback)
  */
+
+struct mixerAndMidi
+{
+    //Gain of synth signal
+    double synthGain = 0.9;
+    //Gain of external audio in signal
+    double extGain = 0.0;
+    //Feedback signal level
+    double feedback = 0.0;
+    //Midi channel
+    int midiChannel = 15;
+    //Midi clock sync (external or internal)
+    bool clockSyncExt = false;
+
+    //Receive midi cc messages
+    int midiCC(int midiChannel, int midiCCIn);
+    //Send midi messages
+    int midiNote(int midiChannel, int keyPressed, bool keyIsPressed);
+    //Route output to before the filter stage (feedback)
+    double signalFeedback( double feedback );
+};
 
 /*
 Thing 9) Noise Generator
@@ -240,6 +425,26 @@ Thing 9) Noise Generator
     3)  Sample and Hold signal control LFO rate
  */
 
+struct noiseGen
+{
+    //Noise colour selector (pink or white)
+    bool noiseColourPink = false;
+    //Noise level
+    double noiseGain = 0.0;
+    //Sample and hold rate (hz)
+    double sahRate = 8.0;
+    //Sample and hold signal
+    double sahControl = 0.0; 
+    //Sample and hold routing
+    int routingSAH = 0;
+
+    //Sample and Hold signal control pitch 
+    double sahControlPitch( double sahControl, int routingSAH = 0  );
+    //Sample and Hold signal control cuttoff frequency
+    double sahControlCutoff( double sahControl, int routingSAH = 1); 
+    //Sample and Hold signal control LFO rate
+    double sahControlLFORate( double sahControl, int routingSAH = 2  );
+};
 
 /*
 Thing 10) Synth
@@ -254,6 +459,27 @@ Thing 10) Synth
     2)  Make snare drum sound
     3)  Send midi
  */
+
+struct synth
+{
+    //Oscillator
+    double oscillatorAudio = 0.0; 
+    //LFO
+    double controlValueLFO = 0.0; 
+    //Envelope
+    double controlValueEnvelope = 0.0; 
+    //Mixer
+    double mixerAudio = 0.0;
+    //Noise Generator
+    double noiseAudio = 0.0;
+
+    //Make bass tone
+    double bassTone();
+    //Make snare drum sound
+    double snareDrum();
+    //Send midi note
+    int sendMidiNote();
+};
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH

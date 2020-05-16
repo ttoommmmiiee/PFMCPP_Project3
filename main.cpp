@@ -1,5 +1,5 @@
 /*
-Project 3 - Part 1a / 5
+Project 3 - Part 1e / 5
 Video:  Chapter 2 Part 5
 User-Defined Types
 
@@ -20,67 +20,467 @@ You are going to write 10 UDTs in project3.
     Part 1e: you will convert those 10 plain-english UDTs into code that runs.
 ************************
 
-1) Look at the picture of the car interior (Part1a pic.jpg).  
-    Fill in the blanks below which break this car interior down into sub-objects.
+Convert your 10 Plain-english UDTs into code.
 
-    Several sub-objects are listed below that make up this car's interior.
-        you're going to name several things that you'll find on each subobject
-        you're going to name several things that each subobject can do.
-        If you've seen "Family Feud", we are going to do what they do in that show
+I recommend compiling after finishing each one and making sure it compiles 
+without errors or warnings before moving on to writing the next UDT. 
 
-        A few blanks are filled in for you already.
-
-Main Object: Car Interior
-Sub Object 1: Steering Wheel
-    Name 4 things you'll find on the:    Steering Wheel
-        1) paddle shifters
-        2) 'cruise control' controls
-        3) 
-        4) 
-    Name 2 things you can do with the:   Steering Wheel
-        1) adjust cruise control settings.
-        2)
-        
-Sub Object 2: Instrument Cluster
-    Name 4 things you'll find on the:   Instrument Cluster
-        1)
-        2)
-        3)
-        4)
-    Name 3 things you can do with the:   Instrument Cluster
-        1)
-        2)
-        3)
-    
-Sub Object 3: Environment Controls
-    Name 3 things you'll find on the:    Environment Controls
-        1)
-        2)
-        3)
-    Name 3 things you can do with the:   Environment Controls
-        1)
-        2)
-        3)
-
-Sub Object 4: Infotainment System
-    Name 3 things you'll find on the:    Infotainment System
-        1)
-        2)
-        3)
-    Name 3 things you can do with the:   Infotainment System
-        1)
-        2)
-        3)
-
-Sub Object 5: Seat 
-    Name 3 things you'll find on the:    Seat
-        1)
-        2)
-        3)
-    Name 2 things you can do with the:   Seat
-        1)
-        2)
+1) define an empty struct for each of your 10 types. i.e.:
 */
+struct CellPhone
+{
+
+};
+/*
+2) Copy your 5 properties & 3 actions into the empty struct body.
+    - comment them out.
+    
+3) declare your member variables and member functions underneath each plain-english comment in your struct's body.
+    - give the member variables relevant data types
+ 
+4) make the function parameter list for those member functions use some of your User-Defined Types
+    - You'll write definitions/implementations for these functions in Project3 Part2
+    - you'll call each of these functions in Project3 part3
+ 
+5) make 2 of the 10 user-defined types have a nested class.  
+    - this nested class also needs 5 properties and 3 actions.
+    - these nested classes are not considered one of your 10 UDTs.
+    - this nested class must be related to the class it is nested inside
+ 
+6) your 10th UDT's properties should be instances of your #5-#9 UDTs.   
+    - No primitives allowed!
+ 
+7) After you finish defining each type, click the [run] button.  
+    Clear up any errors or warnings as best you can. 
+ */
+
+/*
+ example:  
+
+Thing: Car Wash   
+    5 properties:
+        - number of vacuum cleaners
+        - number of eco-friendly cleaning supplies
+        - stores the amount of water used per week.
+        - stores amount of profit made per week
+        - number of cars serviced per day
+    3 things it can do:
+        - wash and wax car
+        - charge customer
+        - detail the car interior
+ */
+
+#include <iostream>
+#include <string>
+
+struct CarWash //                                   1) define an empty struct for each of your 10 types.       
+{
+    //number of vacuum cleaners                     2) copied and commented-out plain-english property
+    int numVacuumCleaners = 3; //                   3) member variables with relevant data types.
+    //number of eco-friendly cleaning supplies      
+    int numEcoFriendlyCleaningSupplies = 20;     
+    //stores the amount of water used per week.     
+    float waterUsedPerWeek = 200.f;            
+    //stores amount of profit made per week         
+    float profitPerWeek = 495.95f;               
+    //number of cars serviced per day               
+    int numberOfCarsServiced = 10;               
+    
+    struct Car //5)                                 Note that the nested type 'Car' is related to the 'CarWash' 
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        bool isAPickupTruck = false;
+        float gasMileage = 26.2f;        
+        int year = 1985;
+        std::string manufacturer = "Toyota";
+        std::string model = "Corolla";
+
+        //3) a member function whose parameter has a default value.
+        //the parameter name is related to the work the function will perform.
+        void fillTank(double fuelAmountInGallons = 2.0);  
+        void breakDown(std::string failureType, bool requiresTow = false);
+        int getMilesTraveledAnnually(bool includeUberLyftTrips);
+    };
+
+    //wash and wax car
+    void washAndWaxCar( Car car ); //4) a member function whose parameter is a UDT.
+    //charge customer
+    float chargeCustomer(float discountPercentage);
+    //detail the car interior
+    void detailInterior( Car car );
+    
+    //5) a member variable whose type is a UDT.
+    Car carBeingServiced;  
+};
+
+
+/*
+Thing 1) Electric Piano
+5 properties:
+    1)  number of keys
+    2)  volume knob
+    3)  grand piano sound
+    4)  organ sound
+    5)  foot pedal
+3 things it can do:
+    1)  adjust volume 
+    2)  change sound
+    3)  make sound
+ */
+
+struct Piano
+{
+    //number of keys
+    int numKeys = 127;
+    //volume knob
+    double volumeLevel = 50.0;
+    //grand piano sound
+    std::string pianoSound = "Grand Paino"; //choice of a few different piano samples
+    //organ sound
+    std::string organSound = "Hammond Organ"; //choice of a few different organ samples
+    //foot pedal
+    bool footPedalPressed = false; 
+
+    struct Knob
+    {
+        int width = 100;
+        int height = 100;
+        float rotationAmount = 270.0f;
+        double knobValue = 0.0;
+    };
+
+    //adjust volume 
+    float pianoVolume(double volumeLevel, Knob volumeKnob);
+    //change sound
+    std::string chooseSound(bool pianoOn, bool organOn);
+    //make sound
+    double audio(int notePressed, double volume, bool footPedalPressed);
+};
+
+/*
+Thing 2) microwave oven
+5 properties:
+    1)  has door
+    2)  has timer
+    3)  power settings
+    4)  presets for different dishes
+    5)  has scale to measure weight
+3 things it can do:
+    1)  cook potato
+    2)  auto cook by weight
+    3)  change power setting
+ */
+
+struct Microwave
+{
+    //has door
+    bool doorIsOpen = true;
+    //has timer
+    int secondsRemaining = 0;
+    //power settings
+    int power = 700;
+    //presets for different dishes
+    int presetDishInput = 0;
+    //has scale to measure weight  
+    double weightInGrams;
+
+    struct Preset
+    {
+        float weightInGrams = 500.0f; 
+        int seconds = 1200;  
+        int power = 900; 
+        std::string presetName = "Potato";
+    };
+
+    //cook potato
+    void cookPotato( Preset potato );
+    //auto cook by weight
+    void cookByWeight(double weightInGrams, int seconds, bool doorIsOpen, int power);
+    //change power setting
+    int powerSetting(int power);
+    
+};
+
+/*
+Thing 3) Airport 
+5 properties:
+    1)  number of planes
+    2)  number of passengers
+    3)  number of cafes
+    4)  stores number of coffee sales per day
+    5)  length of queue at security
+3 things it can do:
+    1)  board passengers on planes
+    2)  restock coffee supplies
+    3)  stop passengers entering airport
+ */
+
+struct Airport
+{
+    //number of planes
+    int numPlanes = 50;
+    //number of passengers
+    int numPassengers = 1000;
+    //number of cafes
+    int numCafes = 10;
+    //stores number of coffee sales per day
+    int numCoffeeSales = 500;
+    //length of queue at security
+    int averageMinutesInQueue = 120;
+
+    //board passengers on planes
+    void boardPassengers(bool planeIsReady, int numPassengers);
+    //restock coffee supplies
+    int restockCoffee(bool coffeeHasRunOut);
+    //stop passengers entering airport
+    bool passengersCanEnter(int numPassengers, int averageMinutesInQueue);
+};
+
+/*
+Thing 4) Vinyl record
+5 properties:
+    1) Length of music on side A
+    2) Has music on both sides
+    3) Signal to noise ratio
+    4) Can play without skipping
+    5) Number of good tracks on record
+3 things it can do:
+    1) Play through to end
+    2) Bring joy to the listener
+    3) Accrue resale value on Discogs
+ */
+
+struct Vinyl
+{
+    //Length of music on side A
+    int lenMusicSeconds = 400;
+    //Has music on both sides
+    bool musicBothSides = true;
+    //Signal to noise ratio
+    double noise = 0.0;
+    //Can play without skipping
+    bool vinylCanPlay = false;
+    //Number of good tracks on record
+    int numberOfGoodTracks = 1;
+
+    //Replay from begining
+    void replay(bool hasPlayedToEnd, bool is12Inch);
+    //Bring joy to the listener
+    double bringJoy(int numberOfGoodTracks, double listenerMood);
+    //Accrue resale value on Discogs
+    double accrueValue(int numberOfGoodTracks, int playsOnYoutube);
+};
+
+/*
+Thing 5) Oscillator
+5 properties:
+    1) Saw Wave level
+    2) Square Wave level
+    3) Tuning control
+    4) Sub Oscillator on/off 
+    5) Octave selector
+3 things it can do:
+    1) Change octave
+    2) Add sub oscillator
+    3) Detune
+ */
+
+struct Oscillator
+{
+    //Saw Wave level
+    double sawLevel = 0.0;
+    //Square Wave level
+    double squLevel = 1.0;
+    //Tuning control 
+    double tuning = 0.0;
+    //Sub Oscillator on/off 
+    bool subOscOn = false;
+    //Octave selector
+    int octave = 0; 
+
+    //FM Oscillator 2
+    double osc1FM(double osc1SawSignal, double osc1SquSignal);
+    //Add sub oscillator
+    double subOscSignal(bool subOscOn);
+    //Turn on number of LEDs to indicate octave
+    int octaveLED(int octave);
+};
+
+/*
+Thing 6) LFO
+5 properties:
+    1) Cycle frequency (Hz)
+    2) Waveform select (square or triangle)
+    3) Attenuate amount
+    4) Speed range select (slow or fast)
+    5) Routing control
+3 things it can do:
+    1) Modulate filter cutoff
+    2) Modulate pitch
+    3) Modulate the Sample and Hold rate
+ */
+
+struct LFO
+{
+    //Cycle frequency (Hz)
+    double freqLFO = 30;
+    //Waveform select (square or triangle)
+    bool squLFO = false;
+    //Attenuate amount
+    float attenuate = 1.0f; 
+    //Speed range select (slow or fast)
+    bool speedSlow = true;
+    //Routing control
+    int routingLFO = 0;
+
+    //Modulate filter cutoff
+    double modCutoff(int routingLFO, double LFOSignal);
+    //Modulate pitch
+    double modPitch(int routingLFO, double LFOSignal);
+    //Modulate the Sample and Hold rate
+    double modSAH(int routingLFO, double LFOSignal);
+};
+
+/*
+Thing 7) Envelope
+5 properties:
+    1)  Attack time (milliseconds)
+    2)  Decay time (milliseconds)
+    3)  Sustain level 
+    4)  Release time (milliseconds)
+    5)  Routing control
+3 things it can do:
+    1)  Control mixer level
+    2)  Control filter cuttoff level
+    3)  Route control to different destinations
+ */
+
+struct Envelope
+{
+    //Attack time (milliseconds)
+    int attack = 5;
+    //Decay time (milliseconds)
+    int decay = 100;
+    //Sustain level 
+    double sustain = 0.5;
+    //Release time (milliseconds)
+    int release = 500;
+    //Routing control
+    int routingEnvelope = 0;
+
+    //Control osc level
+    double oscGainEnvelope(double envelopeSignal, int routingEnvelope = 0 );
+    //Control filter cuttoff level
+    double cutoffEnvelope(double envelopeSignal, int routingEnvelope = 1 );
+    //Route control to different destinations
+    int routingControl(double envelopeSignal, int routingEnvelope = 2 );
+};
+
+/*
+Thing 8) Mixer and midi interface
+5 properties:
+    1)  Gain of synth signal
+    2)  Gain of external audio in signal
+    3)  Feedback signal level
+    4)  Midi channel
+    5)  Midi clock sync (external or internal)
+3 things it can do:
+    1)  Receive midi messages
+    2)  Send midi messages
+    3)  Route output to before the filter stage (feedback)
+ */
+
+struct MixerAndMidi
+{
+    //Gain of synth signal
+    double synthGain = 0.9;
+    //Gain of external audio in signal
+    double extGain = 0.0;
+    //Feedback signal level
+    double feedback = 0.0;
+    //Midi channel
+    int midiChannel = 15;
+    //Midi clock sync (external or internal)
+    bool clockSyncExt = false;
+
+    //Receive midi cc messages
+    int midiCC(int midiChannel, int midiCCIn);
+    //Send midi messages
+    int midiNote(int midiChannel, int keyPressed, bool keyIsPressed);
+    //Route output to before the filter stage (feedback)
+    double signalFeedback( double feedback );
+};
+
+/*
+Thing 9) Noise Generator
+5 properties:
+    1)  Noise colour selector (pink or white)
+    2)  Noise level
+    3)  Sample and hold rate
+    4)  Sample and hold signal
+    5)  Sample and hold routing
+3 things it can do:
+    1)  Sample and Hold signal control pitch 
+    2)  Sample and Hold signal control cuttoff frequency 
+    3)  Sample and Hold signal control LFO rate
+ */
+
+struct NoiseGen
+{
+    //Noise colour selector (pink or white)
+    bool noiseColourPink = false;
+    //Noise level
+    double noiseGain = 0.0;
+    //Sample and hold rate (hz)
+    double sahRate = 8.0;
+    //Sample and hold signal
+    double sahControl = 0.0; 
+    //Sample and hold routing
+    int routingSAH = 0;
+
+    //Sample and Hold signal control pitch 
+    double sahControlPitch( double sahControl, int routingSAH = 0  );
+    //Sample and Hold signal control cuttoff frequency
+    double sahControlCutoff( double sahControl, int routingSAH = 1); 
+    //Sample and Hold signal control LFO rate
+    double sahControlLFORate( double sahControl, int routingSAH = 2  );
+};
+
+/*
+Thing 10) Synth
+5 properties:
+    1)  Oscillator
+    2)  LFO
+    3)  Envelope
+    4)  Mixer
+    5)  Noise Generator
+3 things it can do:
+    1)  Make bass tone
+    2)  Make snare drum sound
+    3)  Send midi
+ */
+
+struct Synth
+{
+    //Oscillator
+    Oscillator oscillator; 
+    //LFO
+    LFO lfo;
+    //Envelope
+    Envelope envelope; 
+    //Mixer
+    MixerAndMidi MixerAndMidi;
+    //Noise Generator
+    NoiseGen noiseGen;
+
+    //Make bass tone
+    double bassTone();
+    //Make snare drum sound
+    double snareDrum();
+    //Send midi note
+    int sendMidiNote();
+};
+
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 

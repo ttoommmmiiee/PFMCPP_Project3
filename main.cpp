@@ -128,7 +128,7 @@ Thing 1) Electric Piano
     3)  make sound
  */
 
-struct volume
+struct Piano
 {
     //number of keys
     int numKeys = 127;
@@ -215,7 +215,7 @@ Thing 3) Airport
     3)  stop passengers entering airport
  */
 
-struct airport
+struct Airport
 {
     //number of planes
     int numPlanes = 50;
@@ -250,7 +250,7 @@ Thing 4) Vinyl record
     3) Accrue resale value on Discogs
  */
 
-struct vinyl
+struct Vinyl
 {
     //Length of music on side A
     int lenMusicSeconds = 400;
@@ -285,7 +285,7 @@ Thing 5) Oscillator
     3) Detune
  */
 
-struct oscillator
+struct Oscillator
 {
     //Saw Wave level
     double sawLevel = 0.0;
@@ -355,7 +355,7 @@ Thing 7) Envelope
     3)  Route control to different destinations
  */
 
-struct envelope
+struct Envelope
 {
     //Attack time (milliseconds)
     int attack = 5;
@@ -390,7 +390,7 @@ Thing 8) Mixer and midi interface
     3)  Route output to before the filter stage (feedback)
  */
 
-struct mixerAndMidi
+struct MixerAndMidi
 {
     //Gain of synth signal
     double synthGain = 0.9;
@@ -425,7 +425,7 @@ Thing 9) Noise Generator
     3)  Sample and Hold signal control LFO rate
  */
 
-struct noiseGen
+struct NoiseGen
 {
     //Noise colour selector (pink or white)
     bool noiseColourPink = false;
@@ -460,18 +460,18 @@ Thing 10) Synth
     3)  Send midi
  */
 
-struct synth
+struct Synth
 {
     //Oscillator
-    double oscillatorAudio = 0.0; 
+    Oscillator oscillator; 
     //LFO
-    double controlValueLFO = 0.0; 
+    LFO lfo;
     //Envelope
-    double controlValueEnvelope = 0.0; 
+    Envelope envelope; 
     //Mixer
-    double mixerAudio = 0.0;
+    MixerAndMidi MixerAndMidi;
     //Noise Generator
-    double noiseAudio = 0.0;
+    NoiseGen noiseGen;
 
     //Make bass tone
     double bassTone();

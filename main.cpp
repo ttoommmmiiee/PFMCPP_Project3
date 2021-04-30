@@ -108,7 +108,52 @@ struct CarWash
     You'll need to insert the Person struct from the video in the space below.
  */
 
+struct Person
+{
+    int age;
+    bool leftHanded;
+    float distanceTravled;
+    float leftlegLength;
+    float leftfootLength;
+    float rightlegLength;
+    float rightfootLength;
 
+    struct Leg
+    {
+        void stepForward();
+        float stepSize(float legLength, float footLength);
+    };
+
+    void run(int howFast, bool leftFootFirst);
+};
+
+float Person::Leg::stepSize(float legLength, float footLength)
+{
+    float stepSize = legLength * footLength;
+    return stepSize;
+}
+
+void Person::Leg::stepForward()
+{
+}
+
+void Person::run(int howFast, bool leftLegFirst)
+{
+    Leg leftLeg;
+    Leg rightLeg;
+
+    if (leftLegFirst == true)
+    {
+        leftLeg.stepForward();
+        rightLeg.stepForward();
+    } 
+    else 
+    {
+        rightLeg.stepForward();
+        leftLeg.stepForward();
+    }
+    distanceTravled += leftLeg.stepSize( leftlegLength , leftfootLength ) + rightLeg.stepSize( rightlegLength , rightfootLength ) * howFast;
+}
 
 
 
@@ -124,34 +169,13 @@ struct CarWash
  4) After you finish defining each type/function, click the [run] button.  Clear up any errors or warnings as best you can.
  */
 
-
-
-
-/*
-Thing 1) Electric Piano
-5 properties:
-    1)  number of keys
-    2)  volume knob
-    3)  grand piano sound
-    4)  organ sound
-    5)  foot pedal
-3 things it can do:
-    1)  adjust volume 
-    2)  change sound
-    3)  make sound
- */
-
 struct Piano
 {
-    //number of keys
     int numKeys = 127;
-    //volume knob
-    double volumeLevel = 50.0;
-    //grand piano sound
-    std::string pianoSound = "Grand Paino"; //choice of a few different piano samples
-    //organ sound
-    std::string organSound = "Hammond Organ"; //choice of a few different organ samples
-    //foot pedal
+    double currentVolumeLevel = 50.0;
+    double presetVolumeLevel = 50.0;
+    std::string pianoSound = "Grand Paino"; 
+    std::string organSound = "Hammond Organ"; 
     bool footPedalPressed = false; 
 
     struct Knob
@@ -162,40 +186,35 @@ struct Piano
         double knobValue = 0.0;
     };
 
-    //adjust volume 
-    float pianoVolume(double volumeLevel, Knob volumeKnob);
-    //change sound
-    std::string chooseSound(bool pianoOn, bool organOn);
-    //make sound
+    void setVolume(double volumeKnobValue);
+    std::string displayChoosenSound(double soundKnobValue);
     double audio(int notePressed, double volume, bool footPedalPressed);
 };
 
-/*
-Thing 2) microwave oven
-5 properties:
-    1)  has door
-    2)  has timer
-    3)  power settings
-    4)  presets for different dishes
-    5)  has scale to measure weight
-3 things it can do:
-    1)  cook potato
-    2)  auto cook by weight
-    3)  change power setting
- */
+void Piano::setVolume(double volumeKnobValue)
+{
+    currentVolumeLevel = volumeKnobValue;
+}
+
+std::string Piano::displayChoosenSound(double soundKnobValue)
+{
+    if (soundKnobValue >= 50.0)
+    {
+        return pianoSound;
+    }
+    else
+    {
+        return organSound;
+    }
+}
+
 
 struct Microwave
 {
-    //has door
     bool doorIsOpen = true;
-    //has timer
-    int secondsRemaining = 0;
-    //power settings
-    int power = 700;
-    //presets for different dishes
+    double secondsRemaining = 0.0;
+    double power = 700.0;
     int presetDishInput = 0;
-    //has scale to measure weight  
-    double weightInGrams;
 
     struct Preset
     {
@@ -205,294 +224,192 @@ struct Microwave
         std::string presetName = "Potato";
     };
 
-    //cook potato
     void cookPotato( Preset potato );
-    //auto cook by weight
-    void cookByWeight(double weightInGrams, int seconds, bool doorIsOpen, int power);
-    //change power setting
-    int powerSetting(int power);
-    
+    void cookByWeight(double selectedWeight, double power);
 };
 
-/*
-Thing 3) Airport 
-5 properties:
-    1)  number of planes
-    2)  number of passengers
-    3)  number of cafes
-    4)  stores number of coffee sales per day
-    5)  length of queue at security
-3 things it can do:
-    1)  board passengers on planes
-    2)  restock coffee supplies
-    3)  stop passengers entering airport
- */
+void Microwave::cookPotato(Microwave::Preset potato)
+{
+    power = potato.power;
+    secondsRemaining = potato.seconds;
+}
+
+void Microwave::cookByWeight(double selectedWeight, double selectedPower)
+{
+    power = selectedPower;
+    secondsRemaining = selectedWeight / selectedPower;
+}
+
 
 struct Airport
 {
-    //number of planes
     int numPlanes = 50;
-    //number of passengers
     int numPassengers = 1000;
-    //number of cafes
     int numCafes = 10;
-    //stores number of coffee sales per day
-    int numCoffeeSales = 500;
-    //length of queue at security
+    int coffeeStock = 500;
     int averageMinutesInQueue = 120;
 
-    //board passengers on planes
     void boardPassengers(bool planeIsReady, int numPassengers);
-    //restock coffee supplies
-    int restockCoffee(bool coffeeHasRunOut);
-    //stop passengers entering airport
+    bool coffeeRestockNeeded(int coffeeSales);
     bool passengersCanEnter(int numPassengers, int averageMinutesInQueue);
 };
 
-/*
-Thing 4) Vinyl record
-5 properties:
-    1) Length of music on side A
-    2) Has music on both sides
-    3) Signal to noise ratio
-    4) Can play without skipping
-    5) Number of good tracks on record
-3 things it can do:
-    1) Play through to end
-    2) Bring joy to the listener
-    3) Accrue resale value on Discogs
- */
+bool Airport::coffeeRestockNeeded(int coffeeSales)
+{
+    if (coffeeStock - coffeeSales <= 50)
+    {
+        return true;
+    } 
+    else
+    {
+        return true;
+    }
+}
+
 
 struct Vinyl
 {
-    //Length of music on side A
     int lenMusicSeconds = 400;
-    //Has music on both sides
     bool musicBothSides = true;
-    //Signal to noise ratio
     double noise = 0.0;
-    //Can play without skipping
     bool vinylCanPlay = false;
-    //Number of good tracks on record
     int numberOfGoodTracks = 1;
 
-    //Replay from begining
     void replay(bool hasPlayedToEnd, bool is12Inch);
-    //Bring joy to the listener
+    void moveToneArm(bool is12Inch);
     double bringJoy(int numberOfGoodTracks, double listenerMood);
-    //Accrue resale value on Discogs
     double accrueValue(int numberOfGoodTracks, int playsOnYoutube);
 };
 
-/*
-Thing 5) Oscillator
-5 properties:
-    1) Saw Wave level
-    2) Square Wave level
-    3) Tuning control
-    4) Sub Oscillator on/off 
-    5) Octave selector
-3 things it can do:
-    1) Change octave
-    2) Add sub oscillator
-    3) Detune
- */
+void Vinyl::replay(bool hasPlayedToEnd, bool is12Inch)
+{
+    if (hasPlayedToEnd == true)
+    {
+        moveToneArm(is12Inch);
+    }
+}
+
+void Vinyl::moveToneArm(bool is12Inch)
+{
+    float distanceToMoveArm;
+
+    if (is12Inch == true)
+    {
+        distanceToMoveArm = 6.0f;
+    }
+    else
+    {
+        distanceToMoveArm = 3.5f;
+    }
+}
 
 struct Oscillator
 {
-    //Saw Wave level
     double sawLevel = 0.0;
-    //Square Wave level
     double squLevel = 1.0;
-    //Tuning control 
     double tuning = 0.0;
-    //Sub Oscillator on/off 
     bool subOscOn = false;
-    //Octave selector
     int octave = 0; 
 
-    //FM Oscillator 2
     double osc1FM(double osc1SawSignal, double osc1SquSignal);
-    //Add sub oscillator
     double subOscSignal(bool subOscOn);
-    //Turn on number of LEDs to indicate octave
-    int octaveLED(int octave);
+    int octaveLED(int octave, bool shiftButtonPressed);
 };
 
-/*
-Thing 6) LFO
-5 properties:
-    1) Cycle frequency (Hz)
-    2) Waveform select (square or triangle)
-    3) Attenuate amount
-    4) Speed range select (slow or fast)
-    5) Routing control
-3 things it can do:
-    1) Modulate filter cutoff
-    2) Modulate pitch
-    3) Modulate the Sample and Hold rate
- */
+double Oscillator::osc1FM(double osc1SawSignal, double osc1SquSignal)
+{
+    return osc1SawSignal * osc1SquSignal;
+}
+
+int Oscillator::octaveLED(int octave, bool shiftButtonPressed)
+{
+    if (shiftButtonPressed == true)
+    {
+        return octave;
+    }
+    else
+    {
+       return octave - 4; 
+    } 
+}
 
 struct LFO
 {
-    //Cycle frequency (Hz)
     double freqLFO = 30;
-    //Waveform select (square or triangle)
     bool squLFO = false;
-    //Attenuate amount
-    float attenuate = 1.0f; 
-    //Speed range select (slow or fast)
+    double attenuate = 1.0; 
     bool speedSlow = true;
-    //Routing control
     int routingLFO = 0;
 
-    //Modulate filter cutoff
-    double modCutoff(int routingLFO, double LFOSignal);
-    //Modulate pitch
+    double modCutoff(double attenuate, double LFOSignal);
     double modPitch(int routingLFO, double LFOSignal);
-    //Modulate the Sample and Hold rate
     double modSAH(int routingLFO, double LFOSignal);
 };
 
-/*
-Thing 7) Envelope
-5 properties:
-    1)  Attack time (milliseconds)
-    2)  Decay time (milliseconds)
-    3)  Sustain level 
-    4)  Release time (milliseconds)
-    5)  Routing control
-3 things it can do:
-    1)  Control mixer level
-    2)  Control filter cuttoff level
-    3)  Route control to different destinations
- */
+double LFO::modCutoff(double attenuate, double LFOSignal)
+{
+    return LFOSignal * attenuate;
+}
+
+
 
 struct Envelope
 {
-    //Attack time (milliseconds)
     int attack = 5;
-    //Decay time (milliseconds)
     int decay = 100;
-    //Sustain level 
     double sustain = 0.5;
-    //Release time (milliseconds)
     int release = 500;
-    //Routing control
-    int routingEnvelope = 0;
 
-    //Control osc level
     double oscGainEnvelope(double envelopeSignal, int routingEnvelope = 0 );
-    //Control filter cuttoff level
     double cutoffEnvelope(double envelopeSignal, int routingEnvelope = 1 );
-    //Route control to different destinations
     int routingControl(double envelopeSignal, int routingEnvelope = 2 );
 };
 
-/*
-Thing 8) Mixer and midi interface
-5 properties:
-    1)  Gain of synth signal
-    2)  Gain of external audio in signal
-    3)  Feedback signal level
-    4)  Midi channel
-    5)  Midi clock sync (external or internal)
-3 things it can do:
-    1)  Receive midi messages
-    2)  Send midi messages
-    3)  Route output to before the filter stage (feedback)
- */
+
 
 struct MixerAndMidi
 {
-    //Gain of synth signal
     double synthGain = 0.9;
-    //Gain of external audio in signal
     double extGain = 0.0;
-    //Feedback signal level
     double feedback = 0.0;
-    //Midi channel
     int midiChannel = 15;
-    //Midi clock sync (external or internal)
     bool clockSyncExt = false;
 
-    //Receive midi cc messages
     int midiCC(int midiChannel, int midiCCIn);
-    //Send midi messages
     int midiNote(int midiChannel, int keyPressed, bool keyIsPressed);
-    //Route output to before the filter stage (feedback)
     double signalFeedback( double feedback );
 };
 
-/*
-Thing 9) Noise Generator
-5 properties:
-    1)  Noise colour selector (pink or white)
-    2)  Noise level
-    3)  Sample and hold rate
-    4)  Sample and hold signal
-    5)  Sample and hold routing
-3 things it can do:
-    1)  Sample and Hold signal control pitch 
-    2)  Sample and Hold signal control cuttoff frequency 
-    3)  Sample and Hold signal control LFO rate
- */
-
 struct NoiseGen
 {
-    //Noise colour selector (pink or white)
     bool noiseColourPink = false;
-    //Noise level
     double noiseGain = 0.0;
-    //Sample and hold rate (hz)
     double sahRate = 8.0;
-    //Sample and hold signal
     double sahControl = 0.0; 
-    //Sample and hold routing
     int routingSAH = 0;
 
-    //Sample and Hold signal control pitch 
     double sahControlPitch( double sahControl, int routingSAH = 0  );
-    //Sample and Hold signal control cuttoff frequency
     double sahControlCutoff( double sahControl, int routingSAH = 1); 
-    //Sample and Hold signal control LFO rate
     double sahControlLFORate( double sahControl, int routingSAH = 2  );
 };
 
-/*
-Thing 10) Synth
-5 properties:
-    1)  Oscillator
-    2)  LFO
-    3)  Envelope
-    4)  Mixer
-    5)  Noise Generator
-3 things it can do:
-    1)  Make bass tone
-    2)  Make snare drum sound
-    3)  Send midi
- */
-
 struct Synth
 {
-    //Oscillator
     Oscillator oscillator; 
-    //LFO
     LFO lfo;
-    //Envelope
     Envelope envelope; 
-    //Mixer
     MixerAndMidi MixerAndMidi;
-    //Noise Generator
     NoiseGen noiseGen;
 
-    //Make bass tone
     double bassTone();
-    //Make snare drum sound
     double snareDrum();
-    //Send midi note
     int sendMidiNote();
 };
+
+double Synth::snareDrum()
+{
+    return noiseGen * 
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH

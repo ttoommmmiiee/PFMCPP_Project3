@@ -321,15 +321,15 @@ double Oscillator::osc1FM(double osc1SawSignal, double osc1SquSignal)
     return osc1SawSignal * osc1SquSignal;
 }
 
-int Oscillator::octaveLED(int octave, bool shiftButtonPressed)
+int Oscillator::octaveLED(int selectedOctave, bool shiftButtonPressed)
 {
     if (shiftButtonPressed == true)
     {
-        return octave;
+        return selectedOctave;
     }
     else
     {
-       return octave - 4; 
+       return selectedOctave - 4; 
     } 
 }
 
@@ -346,9 +346,9 @@ struct LFO
     double modSAH(int routingLFO, double LFOSignal);
 };
 
-double LFO::modCutoff(double attenuate, double LFOSignal)
+double LFO::modCutoff(double attenuateLevel, double LFOSignal)
 {
-    return LFOSignal * attenuate;
+    return LFOSignal * attenuateLevel;
 }
 
 
@@ -405,11 +405,6 @@ struct Synth
     double snareDrum();
     int sendMidiNote();
 };
-
-double Synth::snareDrum()
-{
-    return noiseGen * 
-}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH

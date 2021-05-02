@@ -112,17 +112,20 @@ struct Person
 {
     int age;
     bool leftHanded;
-    float distanceTravled;
-    float leftlegLength;
-    float leftfootLength;
-    float rightlegLength;
-    float rightfootLength;
-
+    float distanceTravled = 0.0f;
+    float leftlegLength = 70.0f;
+    float leftfootLength = 20.0f;
+    float rightlegLength = 70.0f;
+    float rightfootLength = 20.0f;
+    
     struct Leg
     {
         void stepForward();
         float stepSize(float legLength, float footLength);
     };
+
+    Leg leftLeg;
+    Leg rightLeg;
 
     void run(int howFast, bool leftFootFirst);
 };
@@ -139,10 +142,7 @@ void Person::Leg::stepForward()
 
 void Person::run(int howFast, bool leftLegFirst)
 {
-    Leg leftLeg;
-    Leg rightLeg;
-
-    if (leftLegFirst == true)
+    if (leftLegFirst)
     {
         leftLeg.stepForward();
         rightLeg.stepForward();
@@ -152,7 +152,7 @@ void Person::run(int howFast, bool leftLegFirst)
         rightLeg.stepForward();
         leftLeg.stepForward();
     }
-    distanceTravled += leftLeg.stepSize( leftlegLength , leftfootLength ) + rightLeg.stepSize( rightlegLength , rightfootLength ) * howFast;
+    distanceTravled += leftLeg.stepSize(leftlegLength , leftfootLength) + rightLeg.stepSize(rightlegLength , rightfootLength) * howFast;
 }
 
 
@@ -174,7 +174,7 @@ struct Piano
     int numKeys = 127;
     double currentVolumeLevel = 50.0;
     double presetVolumeLevel = 50.0;
-    std::string pianoSound = "Grand Paino"; 
+    std::string pianoSound = "Grand Piano"; 
     std::string organSound = "Hammond Organ"; 
     bool footPedalPressed = false; 
 
@@ -202,10 +202,7 @@ std::string Piano::displayChoosenSound(double soundKnobValue)
     {
         return pianoSound;
     }
-    else
-    {
-        return organSound;
-    }
+    return organSound;
 }
 
 
@@ -260,10 +257,7 @@ bool Airport::coffeeRestockNeeded(int coffeeSales)
     {
         return true;
     } 
-    else
-    {
-        return true;
-    }
+    return false;
 }
 
 
@@ -283,7 +277,7 @@ struct Vinyl
 
 void Vinyl::replay(bool hasPlayedToEnd, bool is12Inch)
 {
-    if (hasPlayedToEnd == true)
+    if (hasPlayedToEnd)
     {
         moveToneArm(is12Inch);
     }
@@ -292,15 +286,7 @@ void Vinyl::replay(bool hasPlayedToEnd, bool is12Inch)
 void Vinyl::moveToneArm(bool is12Inch)
 {
     float distanceToMoveArm;
-
-    if (is12Inch == true)
-    {
-        distanceToMoveArm = 6.0f;
-    }
-    else
-    {
-        distanceToMoveArm = 3.5f;
-    }
+    distanceToMoveArm = is12Inch ? 6.0f : 3.5f; 
 }
 
 struct Oscillator
@@ -323,14 +309,8 @@ double Oscillator::osc1FM(double osc1SawSignal, double osc1SquSignal)
 
 int Oscillator::octaveLED(int selectedOctave, bool shiftButtonPressed)
 {
-    if (shiftButtonPressed == true)
-    {
-        return selectedOctave;
-    }
-    else
-    {
-       return selectedOctave - 4; 
-    } 
+    selectedOctave = shiftButtonPressed ? selectedOctave : selectedOctave - 4;
+    return selectedOctave
 }
 
 struct LFO

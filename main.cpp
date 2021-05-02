@@ -310,7 +310,7 @@ double Oscillator::osc1FM(double osc1SawSignal, double osc1SquSignal)
 int Oscillator::octaveLED(int selectedOctave, bool shiftButtonPressed)
 {
     selectedOctave = shiftButtonPressed ? selectedOctave : selectedOctave - 4;
-    return selectedOctave
+    return selectedOctave;
 }
 
 struct LFO

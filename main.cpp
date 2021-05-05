@@ -67,19 +67,23 @@ int main()
 
 struct Piano
 {
-    int numKeys = 127;
-    double currentVolumeLevel = 50.0;
-    double presetVolumeLevel = 50.0;
+    int numKeys;
+    double currentVolumeLevel;
+    double presetVolumeLevel;
     std::string pianoSound = "Grand Piano"; 
     std::string organSound = "Hammond Organ"; 
     bool footPedalPressed = false; 
 
+    Piano();
+
     struct Knob
     {
-        int width = 100;
-        int height = 100;
-        float rotationAmount = 270.0f;
-        double knobValue = 0.0;
+        int Width;
+        int Height;
+        float RotationAmount;
+        double KnobValue;
+
+        Knob(int width, int height, float rotationAmount, double knobValue);
     };
 
     void setVolume(double volumeKnobValue);
@@ -87,9 +91,29 @@ struct Piano
     double audio(int notePressed, double volume, bool footPedalPressed);
 };
 
+Piano::Piano()
+{
+    numKeys = 127;
+    currentVolumeLevel = 0.0;
+    presetVolumeLevel = 50.0;
+    pianoSound = "Grand Piano"; 
+    organSound = "Hammond Organ"; 
+    footPedalPressed = false; 
+}
+
+Piano::Knob::Knob(int width, int height, float rotationAmount, double knobValue)
+{
+        Width = width;
+        Height = height;
+        RotationAmount = rotationAmount;
+        KnobValue = knobValue;    
+}
+
 void Piano::setVolume(double volumeKnobValue)
 {
     currentVolumeLevel = volumeKnobValue;
+    std::cout << "Current Volume Level = " << currentVolumeLevel << std::endl;
+
 }
 
 std::string Piano::displayChoosenSound(double soundKnobValue)
@@ -299,6 +323,15 @@ struct Synth
 #include <iostream>
 int main()
 {
-    Example::main();
+    Piano myPiano;
+    myPiano.setVolume(50.0);
+    std::cout << "Chosen Sound = " << myPiano.displayChoosenSound(30.0) << std::endl;
+    std::cout << "Chosen Sound = " << myPiano.displayChoosenSound(70.0) << std::endl;
+    std::cout << "Is myPiano's member var 'numKeys' equal to 0? " << (myPiano.numKeys == 0 ? "Yes" : "No") << "\n";
+
+    Piano::Knob volumeKnob(50,50,180.0f,100.0);
+    std::cout << "Is volumeKnob's member var 'width' equal to 50? " << (volumeKnob.Width == 50 ? "Yes" : "No") << "\n";
+
+    // Example::main();
     std::cout << "good to go!" << std::endl;
 }
